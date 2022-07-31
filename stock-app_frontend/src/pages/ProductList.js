@@ -14,14 +14,20 @@ const ProductList = () => {
             .catch(error => {
                 console.log(error);
             });
-    }, []);
+    }, [products]);
 
-    const deleteProduct = () => {
-        console.log("product deleted!");
+    const deleteProduct = async id => {
+        await axios.delete(`http://127.0.0.1:8000/api/stock/${id}`)
+        .then(response => {
+            console.log(response);
+        })
+        .catch(error => {
+            console.log(error);
+        });
     };
 
     return (
-        <div>
+        <div className='container'>
             <Table striped bordered hover responsive>
                 <thead>
                     <tr>
@@ -47,7 +53,7 @@ const ProductList = () => {
                                         <button className='btn btn-info text-white'>Update Product</button>
                                     </Link>
                                     &nbsp;
-                                    <button className='btn btn-danger text-white' onClick={() => deleteProduct()}>Delete Product</button>
+                                    <button id='btn-delete-product' className='btn btn-danger text-white' onClick={() => deleteProduct(product.product_id)}>Delete Product</button>
                                 </td>
                             </tr>
                         );
@@ -56,7 +62,7 @@ const ProductList = () => {
             </Table>
 
             <Link to={`/create`}>
-                <button className='btn btn-primary' >Create New Product</button>
+                <button className='btn btn-success' >Create New Product</button>
             </Link>
         </div>
     );

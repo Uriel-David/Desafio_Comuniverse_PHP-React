@@ -1,13 +1,10 @@
 import './header.css';
 
 const Header = ({ title }) => {
-    const date = new Date();
-    const dateNow = date.getFullYear();
-
     return (
         <div className="components__header">
             <h1>{title}</h1>
-            <p>Product listing, where you can view all products in stock and perform actions with them.</p>
+            <p>App for stock control, where you can view all products in stock and perform actions with them, such as creating, updating or deleting a product.</p>
         </div>
     );
 }
