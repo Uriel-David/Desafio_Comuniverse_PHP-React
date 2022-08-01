@@ -38,7 +38,7 @@ O projeto tem basicamente 3 páginas, indexar, criar e atualizar.
 - Criar: É possível criar um novo produto através de um formulário e assim salvar as informações no banco de dados, para serem visualizadas no índice.
 - Atualização: É possível atualizar o processo através de um formulário e atualizar as informações no banco de dados, para serem visualizadas no índice.
 
- ------------------------------------------------------ VERSION ENGLISH ------------------------------------------------------
+ ----------------------------------------------------- VERSION ENGLISH -----------------------------------------------------
 
 # Challenge_Communiverse_PHP-React
 Challenge for Junior/Full Dev vacancy at Comuniverse, using PHP (Laravel) on the backend and Javascript (React) on the frontend.
