@@ -7,19 +7,38 @@ const ProductList = () => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        axios.get('http://127.0.0.1:8000/api/stock')
+        getProducts();
+    }, []);
+
+    const getProducts = async () => {
+        await axios.get(`${process.env.REACT_APP_HOST_URL_API}/stock`)
             .then(response => {
                 setProducts(response.data);
             })
             .catch(error => {
                 console.log(error);
             });
-    }, [products]);
+    };
 
     const deleteProduct = async id => {
-        await axios.delete(`http://127.0.0.1:8000/api/stock/${id}`)
+        await axios.delete(`${process.env.REACT_APP_HOST_URL_API}/stock/${id}`)
         .then(response => {
             console.log(response);
+            getProducts();
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    };
+
+    const downloadListProducts = async () => {
+        await axios.get(`${process.env.REACT_APP_HOST_URL_API}/csv`)
+        .then(response => {
+            const blob = new Blob([response.data], {
+                type: 'text/csv;charset=utf-8;'
+            });
+            const url = window.URL.createObjectURL(blob);
+            window.open(url);
         })
         .catch(error => {
             console.log(error);
@@ -28,7 +47,11 @@ const ProductList = () => {
 
     return (
         <div className='container'>
-            <Table striped bordered hover responsive>
+            { products.length > 0 ?
+                <button id='download-csv' className='btn btn-light mb-4' onClick={() => downloadListProducts()}>Download List (Format CSV)</button>
+            : ''}
+
+            <Table className='text-center' striped bordered hover responsive>
                 <thead>
                     <tr>
                         <th>Product ID</th>
@@ -62,7 +85,7 @@ const ProductList = () => {
             </Table>
 
             <Link to={`/create`}>
-                <button className='btn btn-success' >Create New Product</button>
+                <button id='create-new-product' className='btn btn-success mb-3'>Create New Product</button>
             </Link>
         </div>
     );

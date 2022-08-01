@@ -8,7 +8,7 @@ const ProductCreate = () => {
     const {register, handleSubmit } = useForm();
 
     const onSubmit = async data => {
-        await axios.post('http://127.0.0.1:8000/api/stock', {
+        await axios.post(`${process.env.REACT_APP_HOST_URL_API}/stock`, {
             product_name: data.product_name,
             product_price: data.product_price,
             product_description: data.product_description,
@@ -21,11 +21,11 @@ const ProductCreate = () => {
         .catch(error => {
             console.log(error);
         });
-    }
+    };
 
     return (
-        <div>
-            <div className='container form-axios'>
+        <div className='container'>
+            <div className='form-axios mb-5'>
                 <Form action='/create' onSubmit={handleSubmit(onSubmit)}>
                     <Form.Group className="mb-3" controlId="product_name">
                         <Form.Label>Name:</Form.Label>
@@ -47,14 +47,14 @@ const ProductCreate = () => {
                         <Form.Control type="number" {...register('product_stock', { required: true })} min={0} placeholder="Stock of product" required />
                     </Form.Group>
 
-                    <Button variant="primary" type="submit">
+                    <Button className='button-submit' variant="primary" type="submit">
                         Submit
                     </Button>
                 </Form>
             </div>
 
             <Link to={`/`}>
-                <button className='btn btn-secondary'>Back</button>
+                <button className='btn btn-secondary button-back mt-2 mb-2'>Back</button>
             </Link>
         </div>
     );

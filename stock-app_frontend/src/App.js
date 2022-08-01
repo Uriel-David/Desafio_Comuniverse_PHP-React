@@ -8,7 +8,7 @@ import './App.css';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App container">
       <Header title={process.env.REACT_APP_NAME} />
       <Routes>
         <Route path="/" element={<ProductList />} />

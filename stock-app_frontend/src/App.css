@@ -3,10 +3,36 @@ html, body {
   margin: 0;
 }
 
+body {
+  background-image: url('assets/background_image.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .App {
+  background-color: aliceblue;
+  border-radius: 8px;
+}
+
+#download-csv {
+  text-align: center;
+}
+
+#create-new-product {
+  width: 100%;
   text-align: center;
 }
 
 .form-axios {
   text-align: left;
+}
+
+.button-back {
+  width: 100%;
+  text-align: center;
+}
+
+.button-submit {
+  width: 100%;
+  text-align: center;
 }
